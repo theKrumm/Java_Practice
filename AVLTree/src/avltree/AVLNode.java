@@ -12,6 +12,10 @@ public class AVLNode {
 	  balance = 0;
 	  key = k;
 	 }
+	 
+	 public boolean waffle() {
+		 return true;
+	 }
 	 public String toString() {
 	  return "" + key;
 	 }
