@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * This class is the complete and tested implementation of an AVL-tree.
  */
 public class AVLTree {
-	//head.
+	//head f.
 	protected AVLNode root; 
  
 /***************************** Core Functions ************************************/
