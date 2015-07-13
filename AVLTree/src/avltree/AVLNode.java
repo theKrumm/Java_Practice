@@ -1,5 +1,5 @@
 package avltree;
-
+//tree node.
 public class AVLNode {
 	 public AVLNode left;
 	 public AVLNode right;
