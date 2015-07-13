@@ -8,15 +8,12 @@ public class AVLNode {
 	 public int balance;
 
 	 public AVLNode(int k) {
-	  left = right = parent = null;
-	  balance = 0;
-	  key = k;
+		 left = right = parent = null;
+		 balance = 0;
+		 key = k;
 	 }
-	 
-	 public boolean waffle() {
-		 return true;
-	 }
+
 	 public String toString() {
-	  return "" + key;
+		 return "" + key;
 	 }
 }
