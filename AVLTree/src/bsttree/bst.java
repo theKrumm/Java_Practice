@@ -2,7 +2,7 @@ package bsttree;
 
 import java.util.NoSuchElementException;
 
-public class BST{
+public class bst{
     
     Node root;
 
@@ -31,7 +31,7 @@ public class BST{
         }
     }
 
-    public BST(){
+    public bst(){
         this.root = null;
     }
     

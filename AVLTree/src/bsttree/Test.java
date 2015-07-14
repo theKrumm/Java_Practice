@@ -55,7 +55,7 @@ class FileData{
 class test{
 
     BufferedReader b;
-    BST a;
+    bst a;
 
 	/* Returns the next data record (a whole record object)
 	 * in the data input file. Returns null if there
@@ -101,7 +101,7 @@ class test{
     public test(String filename){
        try{
 
-           this.a = new BST();
+           this.a = new bst();
            this.b = new BufferedReader(new FileReader(filename));
             
            /* READS DATAFILE.TXT INTO DATASTRUCTURE  */
