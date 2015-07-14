@@ -133,7 +133,13 @@ class test{
             /* This line of code should return the first record in the linked list for a given keyword.
              * It may be useful for your personal debugging
              */ 
-            T.a.get_records("medical" /*Insert keyword to be found here. "medical" is an example*/).print();
+//            System.out.println("loaded file");
+//            System.out.println(T.a.root.keyword);
+//            System.out.println(T.a.root.right.keyword);
+//            System.out.println(T.a.root.left.keyword);
+            T.a.get_records("medical").print();
+            T.a.get_records("medical").print();
+            T.a.get_records("medical").print();
 
             
             T.a.print(); // Prints titles of all elements in the bst sorted by keyword.

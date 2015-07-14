@@ -61,12 +61,13 @@ public class BST{
         } else if (theRecord == null) {
         	throw new NullPointerException("Data is null.");
         }
-    	
-    	int result = keyword.compareTo(root.keyword);
+    	keyword = keyword.toLowerCase();
     	if (node == null) {
     		node = new Node(keyword);
         	node.update(theRecord);
+        	return node;
     	}
+    	int result = keyword.compareTo(node.keyword);
     	
     	if (result > 0) {
     		node.right = insert(node.right, keyword, theRecord);
@@ -76,7 +77,6 @@ public class BST{
     		node.update(theRecord);
     	}
     	return node;
-    	
     }
 
     
@@ -89,21 +89,51 @@ public class BST{
     }
     
     private boolean contains(Node node, String keyword) {
-    	int result = keyword.compareTo(root.keyword);
+    	if (node == null) {
+    		throw new NullPointerException("Null node.");
+    	} else if (keyword == null || keyword == "") {
+    		throw new NullPointerException("Empty string exception.");
+    	}
     	
-    	if (result == 0) {
-    		return true;
-    	} else if (result > 0) {
+    	keyword = keyword.toLowerCase();
+    	int result = keyword.compareTo(node.keyword);
+
+    	if (result > 0) {
     		return contains(node.right, keyword);
     	} else if (result < 0) {
     		return contains(node.left, keyword);
     	}
-    	return false;
+    	return true;
     }
 
     public Record get_records(String keyword){
-        //TODO Returns the first record for a particular keyword. This record will link to other records
-    	//If the keyword is not in the bst, it should return null.
+    	if (keyword == null || keyword == "") {
+    		throw new NullPointerException("keyword was null in get_records request.");
+    	}
+    	if (!contains(keyword)) {
+    		return null;
+    	}
+    
+    	return get_records(root, keyword);
+    }
+    
+    public Record get_records(Node node, String keyword) {
+    	if (node == null) {
+    		throw new NullPointerException("Null node");
+    	}
+    	if (keyword == null || keyword == "") {
+    		throw new NullPointerException("Null keyword");
+    	}
+    	
+    	int result = keyword.compareTo(node.keyword);
+    	
+    	if (result == 0) {
+    		return node.record;
+    	} else if (result > 0) {
+    		return get_records(node.right, keyword);
+    	} else if (result < 0) {
+    		return get_records(node.left, keyword);
+    	}
     	return null;
     }
 
