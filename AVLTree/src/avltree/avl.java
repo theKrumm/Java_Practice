@@ -1,84 +1,133 @@
-package bsttree;
+package avltree;
 
 import java.util.NoSuchElementException;
 
-public class bst{
-    
+
+public class avl{
+	
     Node root;
 
     private class Node{
     	
         String keyword;
         Record record;
-        int size;
         Node left;
         Node right;
-
-        private Node(String k){
+        int size;
+        int height;
+        
+        private Node(String k) {
         	keyword = k;
-
         }
 
-        private void update(Record theRecord){
+        private void update(Record theRecord) {
         	if (theRecord == null) {
         		throw new NullPointerException("Record is not valid.");
         	}
-        	theRecord.next = record;
+        	
+        	Record temp = record;
         	record = theRecord;
+        	record.next = temp;
         	size++;
         }
     }
 
-    public bst(){
-        this.root = null;
-    }
-    
-    public void insert(String keyword, FileData fd){
-
-    	if (keyword == null || keyword == "") {
+	public void insert(String keyword, FileData fd) {
+		
+		if (keyword == null || keyword == "") {
         	throw new NullPointerException("Keyword is null.");
         } else if (fd == null) {
         	throw new NullPointerException("Data is null.");
         }
-        
-        keyword = keyword.toLowerCase();
-        Record recordToAdd = new Record(fd.id, fd.author, fd.title, null);
-        
-        if (root == null) {
-           	root = new Node(keyword);
-        	root.update(recordToAdd);
-        } else {
-        	root = insert(root, keyword, recordToAdd);
-        }
+		
+        Record recordToAdd = new Record(fd.id, fd.title, fd.author, null);
+        root = insert(root, keyword, recordToAdd);
     }
-    
-    private Node insert(Node node, String keyword, Record theRecord) {
-    	
-    	if (keyword == null || keyword == "") {
+
+	private Node insert(Node node, String keyword, Record theRecord) {
+		
+		if (keyword == null || keyword == "") {
         	throw new NullPointerException("Keyword is null.");
         } else if (theRecord == null) {
         	throw new NullPointerException("Data is null.");
         }
-    	keyword = keyword.toLowerCase();
-    	if (node == null) {
-    		node = new Node(keyword);
-        	node.update(theRecord);
-        	return node;
-    	}
-    	int result = keyword.compareTo(node.keyword);
-    	
-    	if (result > 0) {
-    		node.right = insert(node.right, keyword, theRecord);
-    	} else if (result < 0) {
-    		node.left = insert(node.left, keyword, theRecord);
-    	} else {
-    		node.update(theRecord);
-    	}
-    	return node;
-    }
+		
+		if (node == null) {
+			node = new Node(keyword);
+			node.record = theRecord;
+			node.size++;
+		}
+		keyword = keyword.toLowerCase();
+		int result = keyword.compareTo(node.keyword);
+		
+		if (result == 0) {
+			node.update(theRecord);
+		} else if (result < 0) {
+			node.left = insert(node.left, keyword, theRecord);
+		} else {
+			node.right = insert(node.right, keyword, theRecord);
+		}
+		return balance(node);
+	}
 
-    
-    public boolean contains(String keyword){
+	private Node balance(Node node) {
+		if (node == null) {
+			return node;
+		}
+		if (height(node.left) - height(node.right) > 1) {
+			if (height(node.left.left) >= height(node.left.right)) {
+				node = leftChildLeft(node);
+			} else {
+				node = rightChildLeft(node);
+			}
+		} else if (height(node.right) - height(node.left) > 1) {
+			if (height(node.right.right) >= height(node.right.left)) {
+				node = rightChildRight(node);
+			} else {
+				node = leftChildRight(node);
+			}
+		}
+
+		node.height = Math.max(height(node.left), height(node.right)) + 1;
+		return node;
+	}
+
+	private int height(Node node) {
+		if (node != null) {
+			return node.height;
+		}
+		return -1;		
+	}
+
+	private Node leftChildLeft(Node node) {
+		Node rootLeft = node.left;
+		node.left = rootLeft.right;
+		rootLeft.right = node;
+		node.height = Math.max(height(node.left), height(node.right)) + 1;
+		rootLeft.height = Math.max(height(rootLeft.left), node.height) + 1;
+		return rootLeft;
+	}
+	 
+	private Node leftChildRight(Node node) {
+		node.right = leftChildLeft(node.right);
+		return rightChildRight(node);
+	}
+	
+	private Node rightChildRight(Node node) {
+		Node rootRight = node.right;
+		node.right = rootRight.left;
+		rootRight.left = node;
+		node.height = Math.max(height(node.left), height(node.right)) + 1;
+		rootRight.height = Math.max(height(rootRight.right), node.height) + 1;
+		return rootRight;
+	}
+	
+	private Node rightChildLeft(Node node) {
+		node.left = rightChildRight(node.left);
+		return leftChildLeft(node);
+	}
+	
+	public boolean contains(String keyword){
     	if (keyword == null || keyword == "") {
     		throw new NullPointerException("Empty string exception.");
     	}
@@ -103,8 +152,8 @@ public class bst{
     	}
     	return true;
     }
-
-    public Record get_records(String keyword){
+	
+	public Record get_records(String keyword){
     	if (keyword == null || keyword == "") {
     		throw new NullPointerException("keyword was null in get_records request.");
     	}
@@ -134,7 +183,7 @@ public class bst{
     	}
     	return null;
     }
-
+    
     public void delete(String keyword){
     	keyword = keyword.toLowerCase();
     	if (keyword == null || keyword == "") {
@@ -213,4 +262,7 @@ public class bst{
             print(t.right);
         } 
     }
+    
+    
+	
 }
