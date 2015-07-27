@@ -1,7 +1,5 @@
 package heap;
 
-import java.util.*;
-
 @SuppressWarnings("unchecked")
 public class Heap<AnyType extends Comparable<AnyType>> {
 	private static final int CAPACITY = 2;
@@ -27,11 +25,11 @@ public class Heap<AnyType extends Comparable<AnyType>> {
 		}
 
 		// Insert a new item to the end of the array
-		
+
 		int position;
 		// Percolate up
-		for (position = ++size; position > 1 &&
-				x.compareTo(heap[position / 2]) < 0; position = position / 2) {
+		for (position = ++size; position > 1
+				&& x.compareTo(heap[position / 2]) < 0; position = position / 2) {
 			heap[position] = heap[position / 2];
 		}
 		heap[position] = x;
@@ -68,6 +66,9 @@ public class Heap<AnyType extends Comparable<AnyType>> {
 	 * Construct the binary heap given an array of items.
 	 */
 	public void buildHeap(AnyType[] array) {
+		if (array.length == 0 || array == null) {
+			throw new IllegalArgumentException("Array is empty/null");
+		}
 		size = array.length;
 		heap = (AnyType[]) new Comparable[size + 1];
 		System.arraycopy(array, 0, heap, 1, size);
@@ -101,6 +102,27 @@ public class Heap<AnyType extends Comparable<AnyType>> {
 		heap[k] = tmp;
 	}
 
+	public Integer[] kSmallest(Integer[] a, int k) {
+		if (a.length == 0 || a == null) {
+			throw new IllegalArgumentException("Array is empty/null");
+		} else if (k <= 0) {
+			throw new IllegalArgumentException("k has to be greater than 0");
+		} else if (a.length < k) {
+			throw new IllegalArgumentException("k is larger than array length");
+		}
+
+		Integer[] temp = new Integer[k];
+		Heap<Integer> theHeap = new Heap<Integer>();
+		for (int i = 0; i < a.length; i++) {
+			theHeap.insert(a[i]);
+		}
+		for (int i = 0; i < k; i++) {
+			temp[i] = (Integer) theHeap.removeMin();
+		}
+		return temp;
+
+	}
+
 	public static void main(String[] args) {
 
 		Heap<Integer> h = new Heap<Integer>();
@@ -110,8 +132,11 @@ public class Heap<AnyType extends Comparable<AnyType>> {
 		h.insert(2);
 		h.insert(2);
 		h.insert(2);
-		//h.removeMin();
-		
+		Integer[] b = new Integer[4];
+		b = h.kSmallest(a, 4);
+		Heap<Integer> newHeap = new Heap<Integer>();
+		newHeap.buildHeap(b);
+		System.out.println(newHeap);
 		System.out.println(h);
 
 	}
