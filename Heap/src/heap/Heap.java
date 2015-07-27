@@ -85,6 +85,10 @@ public class Heap<AnyType extends Comparable<AnyType>> {
 	}
 
 	private void percolatingDown(int k) {
+		if ( k < 0) {
+			throw new IllegalArgumentException("K can not be less than 0");
+		}
+		
 		AnyType tmp = heap[k];
 		int child;
 
@@ -111,7 +115,7 @@ public class Heap<AnyType extends Comparable<AnyType>> {
 			throw new IllegalArgumentException("k has to be greater than 0");
 		} else if (a.length < k) {
 			throw new IllegalArgumentException("k is larger than array length");
-		}
+		} 
 
 		Integer[] temp = new Integer[k];
 		Heap<Integer> theHeap = new Heap<Integer>();
