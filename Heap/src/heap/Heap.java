@@ -101,7 +101,9 @@ public class Heap<AnyType extends Comparable<AnyType>> {
 		}
 		heap[k] = tmp;
 	}
-
+	
+	// The big O of this method is O(n log n).  this method is similar to a 
+	// heap sort.
 	public Integer[] kSmallest(Integer[] a, int k) {
 		if (a.length == 0 || a == null) {
 			throw new IllegalArgumentException("Array is empty/null");
