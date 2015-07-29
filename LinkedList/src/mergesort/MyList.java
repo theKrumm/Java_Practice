@@ -1,20 +1,21 @@
 package mergesort;
 
 
+
 public class MyList<AnyType> {
-	private Node<AnyType> myHead;
+	private Node<AnyType> head;
 	private int ListSize;
 	
 	public MyList() {
-		myHead = null;
+		head = null;
 		ListSize = 0;
 	}
 	
 	public void add(AnyType num) {
-		if (myHead == null) {
-			myHead = new Node<AnyType>(num);
+		if (head == null) {
+			head = new Node<AnyType>(num);
 		} else {
-			Node<AnyType> temp = myHead;
+			Node<AnyType> temp = head;
 			while (temp.getNext() != null) {
 				temp = temp.getNext();
 			}
@@ -29,10 +30,10 @@ public class MyList<AnyType> {
 			   throw new NullPointerException("Item was null.");
 		   }
 		   
-		   if(myHead == null) {
+		   if(head == null) {
 			  add(item); 
 		   } else {
-			   Node<AnyType> temp = myHead;
+			   Node<AnyType> temp = head;
 			   while (temp.getNext() != null) {
 				   temp = temp.getNext();
 			   }
@@ -52,7 +53,7 @@ public class MyList<AnyType> {
 			   throw new NullPointerException("toInsert was null.");
 		   }
 	   	
-	   	Node<AnyType> temp = myHead;
+	   	Node<AnyType> temp = head;
 	   	while (temp != null && !temp.getValue().equals(key)) {
 	   		temp = temp.getNext();
 	   	   }
@@ -65,7 +66,7 @@ public class MyList<AnyType> {
 	   } // end of insertAfter
 	
 	public int count(int key) {
-		Node<AnyType> temp = myHead;
+		Node<AnyType> temp = head;
 		int count = 0;
 	
 		while(temp != null) {
@@ -78,15 +79,15 @@ public class MyList<AnyType> {
 	}
 	
 	public boolean deleteFirst(int key) {
-		if (myHead == null) {
+		if (head == null) {
 			return false;
 		} else {
-			if ((Integer)myHead.getValue() == key) {
-				myHead = myHead.getNext();
+			if ((Integer)head.getValue() == key) {
+				head = head.getNext();
 				ListSize--;
 				return true;
 			} else {
-				Node<AnyType> temp = myHead;
+				Node<AnyType> temp = head;
 				while (temp.getNext() != null && 
 						(Integer) temp.getNext().getValue() != key) {
 					temp = temp.getNext();
@@ -112,7 +113,7 @@ public class MyList<AnyType> {
 	}
 	
 	public void clearList() {
-		myHead = null;
+		head = null;
 		
 	}
 	
@@ -121,7 +122,7 @@ public class MyList<AnyType> {
 	}
 	
 	public int findMth(int m) {
-		Node<AnyType> temp = myHead;
+		Node<AnyType> temp = head;
 		int count = 0;
 		int target = ListSize - m - 1;
 		if (m < 0) {
@@ -142,7 +143,7 @@ public class MyList<AnyType> {
 	}
 	
 	public void printList() {
-		Node<AnyType> temp = myHead;
+		Node<AnyType> temp = head;
 		if (temp != null) {
 			while (temp != null) {
 				System.out.print(temp.getValue());
@@ -155,4 +156,9 @@ public class MyList<AnyType> {
 		}
 		System.out.println();
 	}
+	
+	public Node<AnyType> mergeTwoLists(MyList<AnyType> l1, MyList<AnyType> l2) {
+		return head;
+	}
+	
 }
