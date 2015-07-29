@@ -69,7 +69,7 @@ public class MyList<AnyType> {
 		int count = 0;
 	
 		while(temp != null) {
-			if ((int) temp.getValue() == key) {
+			if ((Integer) temp.getValue() == key) {
 				count++;
 			}
 			temp = temp.getNext();
@@ -81,14 +81,14 @@ public class MyList<AnyType> {
 		if (myHead == null) {
 			return false;
 		} else {
-			if ((int)myHead.getValue() == key) {
+			if ((Integer)myHead.getValue() == key) {
 				myHead = myHead.getNext();
 				ListSize--;
 				return true;
 			} else {
 				Node<AnyType> temp = myHead;
 				while (temp.getNext() != null && 
-						(int) temp.getNext().getValue() != key) {
+						(Integer) temp.getNext().getValue() != key) {
 					temp = temp.getNext();
 				}
 				
@@ -134,7 +134,7 @@ public class MyList<AnyType> {
 			count++;
 			temp = temp.getNext();
 		}
-		return (int) temp.getValue();
+		return (Integer) temp.getValue();
 	}
 	
 	public void mergeSort() {
