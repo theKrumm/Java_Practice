@@ -24,7 +24,7 @@ public class Board extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		System.out.println("pic search.");
-		pugPic = new Image("http://25.media.tumblr.com/tumblr_md1eog5yq51qlf0kuo1_500.jpg");
+		pugPic = new Image("file:pug.gif");
 		System.out.println("pic found.");
 		pug = new ImageView(pugPic);
 		Group park = new Group(pug);
