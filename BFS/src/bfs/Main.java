@@ -32,7 +32,13 @@ public class Main {
 		lg.addEdge("G", "H");
 		
 		System.out.println(lg);
-		//System.out.println(lg.shortestPath("A","G"));
+		System.out.println(lg.shortestPath("C","F"));
+		System.out.println(lg.shortestPath("A","G"));
+		System.out.println(lg.shortestPath("A", "D"));
+		System.out.println(lg.shortestPath("D","F"));
+		System.out.println(lg.shortestPath("B","H"));
+		System.out.println(lg.shortestPath("Z","R"));
+		System.out.println(lg.shortestPath("A","G"));
 
 
 
