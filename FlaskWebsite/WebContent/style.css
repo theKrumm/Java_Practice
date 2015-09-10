@@ -1,0 +1,59 @@
+@CHARSET "ISO-8859-1";
+
+h2 {
+	font-family: Verdana;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 25px;
+	font-size: 1em;
+	color: white;
+	
+}
+
+#header {
+	position: fixed;
+	top: 15px;
+	background-color: #85754d;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	color: white;
+}
+
+#navbar {
+	position: fixed;
+	left:50%;
+	margin-left:-270px;
+	margin-top: -20px;
+}
+
+li {
+	display: inline;	
+	border: 2px solid #85754d;
+	font-family: Futura, Tahoma, sans-serif;
+	color: #ffffff;
+	border-radius: 5px 5px;
+	padding: 5px 5px 5px 5px;
+	background-color: #4b2e83;
+}
+
+body {
+	background-color: black;
+	background-image: url(http://alphasigmaphi.org/Websites/alphasigmaphihq/images/School_Logos/Washington_Huskies.png);
+	background-repeat: no-repeat;
+	background-position: top;
+	display: relative;
+}
+
+img {
+	position: relative;
+	height: 180px;
+	width: 240px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+#contact {
+	href="ContactPage.html";
+}
+

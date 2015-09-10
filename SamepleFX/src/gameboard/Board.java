@@ -23,14 +23,12 @@ public class Board extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		System.out.println("pic search.");
-		pugPic = new Image("file:pug.gif");
-		System.out.println("pic found.");
+		pugPic = new Image("file:snakeHead.png");
 		pug = new ImageView(pugPic);
 		Group park = new Group(pug);
 		Scene scene = new Scene(park, W, H, Color.BLUE);
-		// Rectangle rec = new Rectangle(x-location, y-location, x-width, y
-		// width)
+		primaryStage.setScene(scene);
+		primaryStage.show();
 
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -41,6 +39,8 @@ public class Board extends Application {
                     case LEFT:  goWest  = true; break;
                     case RIGHT: goEast  = true; break;
                     case SHIFT: running = true; break;
+				default:
+					break;
                 }
             }
         });
@@ -54,6 +54,8 @@ public class Board extends Application {
                     case LEFT:  goWest  = false; break;
                     case RIGHT: goEast  = false; break;
                     case SHIFT: running = false; break;
+				default:
+					break;
                 }
             }
         });

@@ -1,7 +1,5 @@
 package bfs;
 
-import java.util.*;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -22,6 +20,7 @@ public class Main {
 		lg.addEdge("A", "D");
 		lg.addEdge("B", "B");
 		lg.addEdge("B", "H");
+		lg.addEdge("B", "C");
 		lg.addEdge("C", "D");
 		lg.addEdge("C", "E");
 		lg.addEdge("C", "F");
@@ -32,14 +31,15 @@ public class Main {
 		lg.addEdge("G", "H");
 		
 		System.out.println(lg);
+		System.out.println(lg.shortestPath("A","H"));
 		System.out.println(lg.shortestPath("C","F"));
 		System.out.println(lg.shortestPath("A","G"));
-		System.out.println(lg.shortestPath("A", "D"));
+		System.out.println(lg.shortestPath("A","D"));
 		System.out.println(lg.shortestPath("D","F"));
 		System.out.println(lg.shortestPath("B","H"));
-		System.out.println(lg.shortestPath("Z","R"));
+		//System.out.println(lg.shortestPath("Z","R"));
 		System.out.println(lg.shortestPath("A","G"));
-
+		//System.out.println(lg.shortestPath("","G"));
 
 
 	}

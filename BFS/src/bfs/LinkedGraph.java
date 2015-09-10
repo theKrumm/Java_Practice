@@ -3,50 +3,20 @@ package bfs;
 
 import java.util.*;
 public class LinkedGraph {
+	
 	private static final int INFINITY = Integer.MAX_VALUE;
-	
-	private class Node{
-		List<Node> adjacencyList;
-		String label;
-		public int distance;
-		
-		public Node(String lbl){
-			label = lbl;
-			adjacencyList = new ArrayList<Node>();
-			distance = INFINITY;
-		}
-		
-		public String toString(){
-			return label;
-		}
-	}
-	
 	Map<String, Node> nodeList;
 	boolean directed;
 	
-	/**
-	 * Creates empty LinkedGraph.  Default is undirected.
-	 */
 	public LinkedGraph(){
 		directed = false;
 		nodeList = new TreeMap<String,Node>();
 	}
-	
-	/**
-	 * Adds a new node to the LinkedGraph.
-	 * 
-	 * @param label The label of the new node.
-	 */
+
 	public void addNode(String label){
 		nodeList.put(label, new Node(label));
 	}
-	
-	/**
-	 * Adds a new edge to the LinkedGraph.
-	 * 
-	 * @param source The source endpoint of the edge.
-	 * @param dest The destination endpoint of the edge.
-	 */
+
 	public void addEdge(String source, String dest){
 		Node src = nodeList.get(source);
 		Node dst = nodeList.get(dest);
@@ -120,6 +90,22 @@ public class LinkedGraph {
 		return nodeList.get(finish.label).distance;
 	}
 
+	private class Node{
+		List<Node> adjacencyList;
+		String label;
+		public int distance;
+		
+		public Node(String lbl){
+			label = lbl;
+			adjacencyList = new ArrayList<Node>();
+			distance = INFINITY;
+		}
+		
+		public String toString(){
+			return label;
+		}
+	}
+	
 }
 
 
